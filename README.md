@@ -4,7 +4,7 @@ Operating system:	Centos 7 x86_64
 sudo -i
 yum -y install wget unzip zip
 
-wget https://github.com/yzhp/code/archive/master.zip && unzip master.zip && rm -rf master.zip
+wget https://github.com/yzhp/wall/archive/master.zip && unzip master.zip && rm -rf master.zip
 
 bash code-master/nginx.sh  ##±àÒë°²×°nginx
 
