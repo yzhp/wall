@@ -41,7 +41,10 @@ http {
 
     server {
         listen       80;
-        server_name  localhost;
+        server_name  ${domain_name};
+        
+        root /usr/share/nginx/html;
+        index index.html index.htm;
 
         location /etc {
             proxy_redirect off;
@@ -51,14 +54,8 @@ http {
             proxy_set_header Connection "upgrade";
             proxy_set_header Host \$http_host;
         }
-        location / {
-            root html;
-            index index.html index.htm;
-        }
+        
         error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
     }
 }
 EOF
@@ -106,4 +103,4 @@ cat > /etc/v2ray/config.json << EOF
 EOF
 systemctl restart nginx && systemctl restart v2ray
 Green_font_prefix="\033[32m" && Font_color_suffix="\033[0m"
-echo "${Green_font_prefix}url: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc${Font_color_suffix}"
+echo -e "${Green_font_prefix}url: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc${Font_color_suffix}"
