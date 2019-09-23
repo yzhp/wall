@@ -10,6 +10,7 @@ port_num=$(($num%40001+10000))
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf_bak${port_num}
 echo "install Domain£º"
 read domain_name
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf_bak_${port_num}
 cat > /etc/nginx/nginx.conf << EOF
 user  nobody;
 worker_processes  1;
