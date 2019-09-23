@@ -109,5 +109,6 @@ cat > /etc/v2ray/config.json << EOF
   }
 }
 EOF
-systemctl restart nginx && systemctl restart v2ray
-echo "\033[32murl: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc\033[0m"
+systemctl enable nginx && systemctl restart nginx && systemctl restart v2ray
+Green_font_prefix="\033[32m" && Font_color_suffix="\033[0m"
+echo "${Green_font_prefix}url: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc${Font_color_suffix}"

@@ -22,9 +22,8 @@ fi
 systemctl start nginx
 EOF
 chmod + /root/certbotrenew.sh
-
-echo  "\033[32m crobtab -e install  0 23 28 * * /bin/sh /root/certbotrenew.sh \033[0m"
-
+Green_font_prefix="\033[32m" && Font_color_suffix="\033[0m"
+echo "${Green_font_prefix}crobtab -e install  0 23 28 * * /bin/sh /root/certbotrenew.sh${Font_color_suffix}"
 cat > /etc/nginx/nginx.conf << EOF
 user  nobody;
 worker_processes  1;
