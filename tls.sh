@@ -3,11 +3,9 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 cd /usr/local/src/
 wget  https://github.com/certbot/certbot/archive/v0.38.0.tar.gz && tar xzvf v0.38.0.tar.gz
-cd /usr/local/src/certbot-0.38.0
-echo "Let’ s Encrypt-admin-email："
-read admin_mail
-echo "install Domain："
-read domain_name
+cd /usr/local/src/certbot-0.38.0 
+read -p "Let’ s Encrypt-admin-email：" admin_mail
+read -p "install Domain：" domain_name
 systemctl stop nginx
 ./certbot-auto certonly --standalone --email ${admin_mail} -d ${domain_name}
 systemctl start nginx

@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-
 num=$(cat /dev/urandom | head -n 10 | cksum | awk -F ' ' '{print $1}')
 port_num=$(($num%40001+10000))
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf_bak${port_num}
-echo "install Domain："
-read domain_name
+read -p "install Domain：" domain_name
 cat > /etc/nginx/nginx.conf << EOF
 user  nobody;
 worker_processes  1;
@@ -107,4 +105,4 @@ cat > /etc/v2ray/config.json << EOF
 }
 EOF
 systemctl restart nginx && systemctl restart v2ray
-echo "\033[32m url: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc\033[0m"
+echo "\033[32murl: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc\033[0m"

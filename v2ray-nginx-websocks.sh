@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
+read -p "install Domain£º" domain_name
+
 rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-yum install nginx
+yum install -y nginx
 wget https://install.direct/go.sh
 bash go.sh
 num=$(cat /dev/urandom | head -n 10 | cksum | awk -F ' ' '{print $1}')
 port_num=$(($num%40001+10000))
-mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf_bak${port_num}
-echo "install Domain£º"
-read domain_name
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf_bak_${port_num}
 cat > /etc/nginx/nginx.conf << EOF
 user  nobody;
@@ -111,4 +110,4 @@ cat > /etc/v2ray/config.json << EOF
 }
 EOF
 systemctl restart nginx && systemctl restart v2ray
-echo "\033[32m url: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc\033[0m"
+echo "\033[32murl: ${domain_name} 443 to: ${port_num} uuid: ${uuid}  ws-path: /etc\033[0m"
