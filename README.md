@@ -3,7 +3,7 @@
 Operating system:	Centos 7 x86_64 
 
 sudo -i
-
+yum update -y #各大VPS商提供的基准系统不相同，还是升一下吧
 yum -y install wget unzip zip
 
 wget https://github.com/yzhp/wall/archive/master.zip && unzip master.zip && rm -rf master.zip
